@@ -18,6 +18,9 @@ uvicorn = "*"
 streamlit = "*"
 streamlit-chat = "*"
 tqdm = "*"
+jupyter = "*"
+pypdf = "*"
+faiss-cpu = "*"
 
 [dev-packages]
 

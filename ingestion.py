@@ -3,11 +3,14 @@ from bs4 import BeautifulSoup
 import re
 import html
 
+# from consts import INDEX_NAME
+
 from langchain.document_loaders import ReadTheDocsLoader
 from langchain.text_splitter import PythonCodeTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
 import pinecone
+
 
 class Document:
     def __init__(self, page_content, metadata):
@@ -70,11 +73,13 @@ def ingest_docs() -> None:
     paths = [
         "manim-docs/docs.manim.community/en/stable",
         "flyingframes/flyingframes.readthedocs.io/en/latest",
-        "slama",]
+        "slama",
+    ]
 
     pinecone.init(
         api_key=os.environ["PINECONE_API_KEY"],
-        environment=os.environ["PINECONE_ENVIRONMENT_REGION"],)
+        environment=os.environ["PINECONE_ENVIRONMENT_REGION"],
+    )
 
     loader = CustomReadTheDocsLoader(paths)
     raw_documents = loader.load()
